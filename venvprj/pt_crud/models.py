@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 
-class Naperson(models.Model):
+class Paciente(models.Model):
      GENERO = (
          ('M', 'Masculino'),
          ('F', 'Femenino'),
@@ -35,4 +35,3 @@ class Naperson(models.Model):
      email = models.EmailField(max_length=128)
      profesion = models.CharField(max_length=128)
      referente = models.CharField(max_length=128)
-
