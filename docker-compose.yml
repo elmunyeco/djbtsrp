@@ -1,0 +1,32 @@
+version: "3.2"
+   
+services:
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - ./data/db:/data/db
+    environment:
+      - POSTGRES_DB=hc
+      - POSTGRES_USER=hc
+      - POSTGRES_PASSWORD=hc
+    ports:
+      - 5432:5432
+    networks:
+      - db-network
+      
+  dbadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=elyecomun@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=hc
+    ports:
+      - 8888:80
+    depends_on:
+      - db
+    networks:
+      - db-network
+
+networks: 
+  db-network:
+    driver: bridge
