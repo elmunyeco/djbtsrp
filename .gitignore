@@ -4,3 +4,4 @@ lib64
 pyvenv.cfg
 bin/
 data*
+*__pycache__*
