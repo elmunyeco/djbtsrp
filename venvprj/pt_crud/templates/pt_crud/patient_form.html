@@ -1,5 +1,9 @@
 {% extends 'pt_crud/base.html' %}
+{% load crispy_forms_tags%}
 
 {% block content %}
-<p> CRUD FORM </p>
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %} 
+{{form|crispy}}
+</form>
 {% endblock content %}
