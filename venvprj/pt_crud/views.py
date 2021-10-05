@@ -1,21 +1,21 @@
 from django.shortcuts import render, redirect
-from .forms import PatientForm 
+from .forms import PacienteForm 
 
 # Create your views here.
 
-def patient_list(request):
-    return render(request,'pt_crud/patient_list.html')
+def paciente_list(request):
+    return render(request,'pt_crud/paciente_list.html')
 
-def patient_form(request):
+def paciente_form(request):
     if request.method == "GET":
-        form = PatientForm()
-        return render(request,'pt_crud/patient_form.html',{'form':form})
+        form = PacienteForm()
+        return render(request,'pt_crud/paciente_form.html',{'form':form})
     else:
-        form = PatientForm(request.POST)
+        form = PacienteForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("/patient/list")
+            return redirect("/paciente/list")
 
 
-def patient_del(request):
+def paciente_del(request):
     return

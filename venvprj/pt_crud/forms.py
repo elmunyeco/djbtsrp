@@ -2,7 +2,7 @@ from django import forms
 from .models import Paciente
 
 
-class PatientForm(forms.ModelForm):
+class PacienteForm(forms.ModelForm):
 
     class Meta:
         model = Paciente
@@ -23,7 +23,7 @@ class PatientForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        super(PatientForm, self).__init__(*args, **kwargs)
+        super(PacienteForm, self).__init__(*args, **kwargs)
         self.fields['nacimientoFecha'].required = False
         self.fields['documentoNumero'].required = False
         self.fields['documentoTipo'].required = False
