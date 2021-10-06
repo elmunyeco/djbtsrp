@@ -1,0 +1,20 @@
+{% extends 'pt_crud/base.html' %}
+
+{% block content %}
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Nombre Completo</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for paciente in paciente_list %}
+        <tr>
+            <td>
+                {{paciente.nombre}} {{paciente.apellido}}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+{% endblock content %}
