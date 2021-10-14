@@ -1,11 +1,16 @@
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 from .forms import PacienteForm 
 from .models import Paciente
 
 # Create your views here.
 
 def paciente_list(request):
-    context = {'paciente_list':Paciente.objects.all()}
+    pacientes = Paciente.objects.all()
+    paginator = Paginator(pacientes, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {'paciente_list':pacientes}
     return render(request,'pt_crud/paciente_list.html',context)
 
 def paciente_form(request):
