@@ -35,3 +35,7 @@ class Paciente(models.Model):
     email = models.EmailField(max_length=128, null=True)
     profesion = models.CharField(max_length=128, null=True)
     referente = models.CharField(max_length=128, null=True)
+
+
+    class Meta:
+        ordering = ['id']

@@ -1,0 +1,54 @@
+{% extends 'pt_crud/vase.html' %}
+
+{% block content %}
+
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Nombre Completo</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for paciente in paciente_list %}
+        <tr>
+            <td>
+                {{paciente.nombre}} {{paciente.apellido}}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if paciente_list.has_other_pages %}
+<ul class="pagination">
+    {%if paciente_list.has_previous%}
+    <li><a href="?page={{paciente_list.paciente_list.previous_page_number}}">&laquo;</a></li>
+    {%else%}
+    <li class="disabled"><span>&laquo;</span></li>
+    {%endif%}
+
+    {% for i in paciente_list.paginator.page_range %}
+    {% if paciente_list.number == i %}
+    <li class="active">
+        <span>{{ i }}
+            <span class="sr-only">
+                {current}
+            </span>
+        </span>
+    </li>
+    {% else %}
+    <li>
+        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+    </li>
+    {% endif %}
+    {% endfor %}
+
+    {%if paciente_list.has_next%}
+    <li><a href="?page={{paciente_list.next_page_number}}">&raquo;</a></li>
+    {%else%}
+    <li class="disabled" <span>&raquo;</span></li>
+    {%endif%}
+</ul>
+{% endif %}
+
+{% endblock content %}
