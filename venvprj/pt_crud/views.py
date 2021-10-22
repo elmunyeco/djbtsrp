@@ -3,25 +3,29 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import PacienteForm
 from .models import Paciente
 
+from django.utils import timezone
+from django.views.generic.list import ListView
+
 # Create your views here.
 
 
-def paciente_list(request):
+""" def paciente_list(request):
     pacientes_list = Paciente.objects.all()
     page = request.GET.get('page', 1)
-    paginator = Paginator(pacientes_list, 15)
+    paginator = Paginator(pacientes_list, 10)
     page_obj = paginator.get_page(page)
-    page_range = paginator.get_elided_page_range(number=page)   
+    page_range = paginator.get_elided_page_range(number=page)
 
     try:
         pacientes = paginator.page(page)
     except PageNotAnInteger:
         pacientes = paginator.page(1)
     except EmptyPage:
-        pacientes = paginator.page(paginator.num_pages)
+        pacientes = paginator.page(paginator.num_pages, on_each_side=3)
 
     context = {'paciente_list': pacientes}
     return render(request, 'pt_crud/paciente_list.html', context)
+ """
 
 
 def paciente_form(request):
@@ -37,3 +41,14 @@ def paciente_form(request):
 
 def paciente_del(request):
     return
+
+
+class PacienteListView(ListView):
+
+    model = Paciente
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        return context
