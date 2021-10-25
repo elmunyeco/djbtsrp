@@ -1,19 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'pt_crud/base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>TitulO</title>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
-        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-</head>
-
+{% block content %}
 <body>
     <div class="container">
         <div class="row">
@@ -33,122 +20,65 @@
                         {% endfor %}
                     </tbody>
                 </table>
-            </div>
 
-            <div>
-                <ul class="pagination justify-content-center flex-wrap mt-2 mb-4">
+                {% load paginator_tags %}
+                {% get_proper_elided_page_range page_obj.paginator page_obj.number 1 1 as page_range%}
+                <ul class="pagination justify-content-center">
                     {% if page_obj.has_previous %}
-                    <li class="page-item"><a class="page-link"
-                            href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+                    <li class "page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Prev">
+                            <span aria-hidden="true"><i class="fa-solid fa-arrow-left"></i></span>
+                        </a>
                     </li>
                     {% else %}
-                    <li class="disabled page-item"><span class="page-link">&laquo;</span></li>
+                    <li class="page-item disabled">
+                        <a class="disabled page-link" href="#" aria-label="Prev">
+                            <span aria-hidden="true"><i class="fa-solid fa-arrow-left"></i></span>
+                        </a>
+                    </li>
                     {% endif %}
-                    {% comment %} {% for i in page_range|default_if_none:page_obj.paginator.get_elided_page_range %}
-                    {% endcomment %}
-                    {% page_obj.paginator.get_elided_page_range as oluc %}
-                    {% for i in oluc %}
+
+
+                    {% for i in page_range %}
+
+
                     {% if page_obj.number == i %}
-                    <li class="active page-item"><span class="page-link">{{ i }} <span
-                                class="sr-only">(current)</span></span>
+                    <li class="active page-item" aria-current="page">
+                        <a class="page-link" href="#">
+                            {{ i }}
+                            <span class="sr-only">(current)</span>
+                        </a>
                     </li>
                     {% else %}
                     {% if i == page_obj.paginator.ELLIPSIS %}
-                    <li class="page-item"><span class="page-link">{{ i }}</span></li>
+                    <li class="page-item" aria-current="page">
+                        <a class="page-link">
+                            {{ i }}
+                        </a>
+                    </li>
                     {% else %}
-                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    <li class="page-item" aria-current="page">
+                        <a class="page-link" href="?page={{ i }}">{{ i }}
+                        </a>
+                    </li>
                     {% endif %}
                     {% endif %}
                     {% endfor %}
+
                     {% if page_obj.has_next %}
-                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+                    <li class "page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
+                        </a>
                     </li>
                     {% else %}
-                    <li class="disabled page-item"><span class="page-link">&raquo;</span></li>
+                    <li class="page-item disabled">
+                        <a class="disabled page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
+                        </a>
+                    </li>
                     {% endif %}
+
                 </ul>
             </div>
-
-
-            {% comment %}
-            {% if paciente_list.has_other_pages %}
-            <ul class="pagination justify-content-center flex-wrap mt-2 mb-4">
-                {% if paciente_list.has_previous %}
-                <li class "page-item">
-                    <a class="page-link" href="?page={{ paciente_list.previous_page_number }}" aria-label="Prev">
-                        <span aria-hidden="true"><i class="fa-solid fa-arrow-left"></i></span>
-                    </a>
-                </li>
-                {% else %}
-                <li class="page-item disabled">
-                    <a class="disabled page-link" href="#" aria-label="Prev">
-                        <span aria-hidden="true"><i class="fa-solid fa-arrow-left"></i></span>
-                    </a>
-                </li>
-                {% endif %}
-                <script>
-                    console.log("paginator.get_elided_page_range {{paciente_list.paginator.get_elided_page_range}}")
-                    console.log("paginator.page_range {{paciente_list.paginator.page_range}}")
-                    console.log("paciente_list.number {{paciente_list.number}}")
-                    console.log("algo {{paciente_list.paginator.ELLIPSIS}}")
-                </script>
-                {% for i in paciente_list.paginator.page_range|default_if_none:paciente_list.paginator.get_elided_page_range %}
-                <!--DESDE ACA HAY QUE CONVERTIR -->
-                {% if paciente_list.number == i %}
-                <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="#">
-                        {{ i }}
-                    </a>
-                </li>
-                {% else %}
-                {% if i == paciente_list.paginator.ELLIPSIS%}
-                <script>
-                    console.log("QUE SI")
-                </script>
-                <li class="page-item" aria-current="page">
-                    <span class="page-link">{{ i }}</span>
-                </li>
-                {% else %}
-                <li class="page-item" aria-current="page">
-                    <a class="page-link" href="?page={{ i }}">{{ i }}
-                    </a>
-                </li>
-                {%endif%}
-                {% endif %}
-                {% endfor %}
-                {% if paciente_list.has_next %}
-                <li class "page-item">
-                    <a class="page-link" href="?page={{ paciente_list.next_page_number }}" aria-label="Next">
-                        <span aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
-                    </a>
-                </li>
-                {% else %}
-                <li class="page-item disabled">
-                    <a class="disabled page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
-                    </a>
-                </li>
-                {% endif %}
-            </ul>
-            {% endif %}
-            {% endcomment %}
-
-        </div>
-    </div>
-
-    <script src="" async defer></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
-    </script>
-
-    <style>
-        .asteriskField {
-            display: none;
-        }
-    </style>
-</body>
-
-</html>
+{% endblock content %}
