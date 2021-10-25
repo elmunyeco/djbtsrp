@@ -15,9 +15,7 @@
     {% load static%}
     <link rel="shortcut icon" href="{% static "favicon.ico" %}" />
 
-    <title>Coso</title>
-
-    {% block head %}
+    <title>CardiOmarPrieto</title>
 
     <script src="" async defer></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -40,33 +38,9 @@
         integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    {% endblock %}
 </head>
 
 <body>
-
-    <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/">{{ APPTITLE }}</a>
-                <button class="navbar-toggle" data-target="#navbar-main" data-toggle="collapse" type="button">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div id="navbar-main" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="">Nav Left</a></li>
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="">Nav Right</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
     <div class="container">
         <div id="banner" class="page-header">
             <h1>{% block title %}{{ APPTITLE }}{% endblock %}</h1>

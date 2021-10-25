@@ -1,84 +1,88 @@
 {% extends 'pt_crud/base.html' %}
 
 {% block content %}
+
 <body>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h4>Una ListView</h4>
-                <table id="bootstrapdatatable" class="table table-striped table-bordered" width="100%">
-                    <thead>
-                        <tr>
-                            <th>Nombre Completo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for paciente in paciente_list %}
-                        <tr>
-                            <td>{{ paciente.nombre}} {{paciente.apellido }}</td>
-                        </tr>
+                <div>
+                    <table id="bootstrapdatatable" class="table table-striped table-bordered" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Nombre Completo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for paciente in paciente_list %}
+                            <tr>
+                                <td>{{ paciente.nombre}} {{paciente.apellido }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    {% load paginator_tags %}
+                    {% get_proper_elided_page_range page_obj.paginator page_obj.number 1 1 as page_range%}
+                    <ul class="pagination justify-content-center">
+                        {% if page_obj.has_previous %}
+                        <li class "page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Prev">
+                                <span aria-hidden="true"><i class="fa-solid fa-arrow-left"></i></span>
+                            </a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <a class="disabled page-link" href="#" aria-label="Prev">
+                                <span aria-hidden="true"><i class="fa-solid fa-arrow-left"></i></span>
+                            </a>
+                        </li>
+                        {% endif %}
+
+
+                        {% for i in page_range %}
+
+
+                        {% if page_obj.number == i %}
+                        <li class="active page-item" aria-current="page">
+                            <a class="page-link" href="#">
+                                {{ i }}
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        {% else %}
+                        {% if i == page_obj.paginator.ELLIPSIS %}
+                        <li class="page-item" aria-current="page">
+                            <a class="page-link">
+                                {{ i }}
+                            </a>
+                        </li>
+                        {% else %}
+                        <li class="page-item" aria-current="page">
+                            <a class="page-link" href="?page={{ i }}">{{ i }}
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% endif %}
                         {% endfor %}
-                    </tbody>
-                </table>
 
-                {% load paginator_tags %}
-                {% get_proper_elided_page_range page_obj.paginator page_obj.number 1 1 as page_range%}
-                <ul class="pagination justify-content-center">
-                    {% if page_obj.has_previous %}
-                    <li class "page-item">
-                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Prev">
-                            <span aria-hidden="true"><i class="fa-solid fa-arrow-left"></i></span>
-                        </a>
-                    </li>
-                    {% else %}
-                    <li class="page-item disabled">
-                        <a class="disabled page-link" href="#" aria-label="Prev">
-                            <span aria-hidden="true"><i class="fa-solid fa-arrow-left"></i></span>
-                        </a>
-                    </li>
-                    {% endif %}
+                        {% if page_obj.has_next %}
+                        <li class "page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
+                            </a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <a class="disabled page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
+                            </a>
+                        </li>
+                        {% endif %}
 
-
-                    {% for i in page_range %}
-
-
-                    {% if page_obj.number == i %}
-                    <li class="active page-item" aria-current="page">
-                        <a class="page-link" href="#">
-                            {{ i }}
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    {% else %}
-                    {% if i == page_obj.paginator.ELLIPSIS %}
-                    <li class="page-item" aria-current="page">
-                        <a class="page-link">
-                            {{ i }}
-                        </a>
-                    </li>
-                    {% else %}
-                    <li class="page-item" aria-current="page">
-                        <a class="page-link" href="?page={{ i }}">{{ i }}
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% endif %}
-                    {% endfor %}
-
-                    {% if page_obj.has_next %}
-                    <li class "page-item">
-                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
-                            <span aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
-                        </a>
-                    </li>
-                    {% else %}
-                    <li class="page-item disabled">
-                        <a class="disabled page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
-                        </a>
-                    </li>
-                    {% endif %}
-
-                </ul>
+                    </ul>
+                </div>
             </div>
-{% endblock content %}
+            {% endblock content %}
