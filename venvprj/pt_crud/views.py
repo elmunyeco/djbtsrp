@@ -5,6 +5,7 @@ from .models import Paciente
 
 from django.utils import timezone
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
 # Create your views here.
 
@@ -52,3 +53,7 @@ class PacienteListView(ListView):
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()
         return context
+
+class PacienteDetailView(DetailView):
+
+    model = Paciente
