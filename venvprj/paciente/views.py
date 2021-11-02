@@ -25,14 +25,14 @@ from django.views.generic.detail import DetailView
         pacientes = paginator.page(paginator.num_pages, on_each_side=3)
 
     context = {'paciente_list': pacientes}
-    return render(request, 'pt_crud/paciente_list.html', context)
+    return render(request, 'paciente/paciente_list.html', context)
  """
 
 
 def paciente_form(request):
     if request.method == "GET":
         form = PacienteForm()
-        return render(request, 'pt_crud/paciente_form.html', {'form': form})
+        return render(request, 'paciente/paciente_form.html', {'form': form})
     else:
         form = PacienteForm(request.POST)
         if form.is_valid():
