@@ -10,5 +10,5 @@ urlpatterns = [
     #path('', views.paciente_form),  # localhost:p/ptid OJO CUIDADO
     #path('list', views.PacienteListView.as_view(), name='pacientes')
     url(r'^$', views.PacienteListView.as_view(), name='list'),
-    url(r'^(?P<pk>\d+)$', PacienteDetailView.as_view, name='detail')
+    url(r'^(?P<pk>\d+)$', PacienteDetailView.as_view(), name='detail')
 ]

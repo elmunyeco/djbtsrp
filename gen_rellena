@@ -1,3 +1,4 @@
+for i in {1..10000}
 do
-echo "insert into pt_crud_paciente (nombre, apellido, \"documentoNumero\", \"documentoTipo\", genero ) values ('carlos_$i', 'keen_$i', 'documento_$i', 'DNI', 'M');" >> rellena
+echo "insert into paciente_paciente (nombre, apellido, \"documentoNumero\", \"documentoTipo\", genero ) values ('carlos_$i', 'keen_$i', 'documento_$i', 'DNI', 'M');" >> rellena
 done
