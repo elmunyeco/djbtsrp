@@ -16,8 +16,6 @@ class Paciente(models.Model):
         ('LC', 'Libreta Civica'),
     )
 
-    #id = models.UUIDField(
-    #    primary_key=True, default='uuid.uuid4', editable=False)
     nombre = models.CharField(max_length=128)
     apellido = models.CharField(max_length=128)
     nacimientoFecha = models.DateField(null=True)
@@ -36,6 +34,14 @@ class Paciente(models.Model):
     profesion = models.CharField(max_length=128, null=True)
     referente = models.CharField(max_length=128, null=True)
 
-
     class Meta:
         ordering = ['id']
+
+
+class HistoriaClinica(models.Model):
+
+    paciente = models.OneToOneField(
+        Paciente,
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
