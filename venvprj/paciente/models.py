@@ -39,9 +39,13 @@ class Paciente(models.Model):
 
 
 class HistoriaClinica(models.Model):
-
-    paciente = models.OneToOneField(
+    campo = models.CharField(max_length=2)
+    """
+        paciente = models.OneToOneField(
         Paciente,
         on_delete=models.CASCADE,
         primary_key=True,
     )
+    """
+    class Meta:
+        ordering = ['id']
