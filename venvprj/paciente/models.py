@@ -34,12 +34,19 @@ class Paciente(models.Model):
     profesion = models.CharField(max_length=128, null=True)
     referente = models.CharField(max_length=128, null=True)
 
+    def save(self, *args, **kwargs):
+        if self.pk is None:
+            self.model = models.Model.object.create(descripcion='culoroto')
+            super().save(*args, **kwargs)
+
     class Meta:
         ordering = ['id']
 
 
 class HistoriaClinica(models.Model):
-    campo = models.CharField(max_length=2)
+    paciente = models.ForeignKey(
+        Paciente, default=None, on_delete=models.CASCADE)
+    """ descripcion = models.TextField(null=True) """
     """
         paciente = models.OneToOneField(
         Paciente,
@@ -47,5 +54,6 @@ class HistoriaClinica(models.Model):
         primary_key=True,
     )
     """
+
     class Meta:
         ordering = ['id']
