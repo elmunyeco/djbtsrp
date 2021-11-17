@@ -1,3 +1,4 @@
+from django.db.models.signals import post_save
 from django.db import models
 
 # Create your models here.
@@ -34,21 +35,18 @@ class Paciente(models.Model):
     profesion = models.CharField(max_length=128, null=True)
     referente = models.CharField(max_length=128, null=True)
 
-    def save(self, *args, **kwargs):
-        if self.pk is None:
-            self.model = models.Model.object.create(descripcion='culoroto')
-            super().save(*args, **kwargs)
+    def __str__(self):
+        return ("Paciente: %s" % self.nombre)
 
     class Meta:
         ordering = ['id']
 
 
 class HistoriaClinica(models.Model):
-    paciente = models.ForeignKey(
-        Paciente, default=None, on_delete=models.CASCADE)
-    """ descripcion = models.TextField(null=True) """
-    """
-        paciente = models.OneToOneField(
+    descripcion = models.TextField(null=True)
+
+    """ 
+    paciente = models.OneToOneField(
         Paciente,
         on_delete=models.CASCADE,
         primary_key=True,
@@ -57,3 +55,11 @@ class HistoriaClinica(models.Model):
 
     class Meta:
         ordering = ['id']
+
+
+def create_paciente(sender, instance, signal, **kwargs):
+    obj = HistoriaClinica(id=instance.id, descripcion='Historia Clínica ({0}) de {1} {2}'.format(instance.id, instance.nombre, instance.apellido) )
+    obj.save()
+
+
+post_save.connect(create_paciente, sender=Paciente)
