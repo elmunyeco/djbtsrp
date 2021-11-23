@@ -43,23 +43,17 @@ class Paciente(models.Model):
 
 
 class HistoriaClinica(models.Model):
-    descripcion = models.TextField(null=True)
-
-    """ 
     paciente = models.OneToOneField(
         Paciente,
         on_delete=models.CASCADE,
         primary_key=True,
     )
-    """
-
-    class Meta:
-        ordering = ['id']
+    descripcion = models.TextField(null=True)
 
 
-def create_paciente(sender, instance, signal, **kwargs):
-    obj = HistoriaClinica(id=instance.id, descripcion='Historia Clínica ({0}) de {1} {2}'.format(instance.id, instance.nombre, instance.apellido) )
-    obj.save()
+def create_hc(sender, instance, signal, **kwargs):
+    HistoriaClinica.objects.create(paciente=instance, descripcion='Historia Clínica ({0}) de {1} {2}'.format(
+        1, instance.nombre, instance.apellido))
 
 
-post_save.connect(create_paciente, sender=Paciente)
+post_save.connect(create_hc, sender=Paciente)
