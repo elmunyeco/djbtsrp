@@ -9,31 +9,31 @@ class PacienteForm(forms.ModelForm):
         # fields = ("",)
         fields = '__all__'
         labels = {
-            'nacimientoFecha': 'Fecha de Nacimiento',
-            'documentoNumero': 'Número de Documento',
-            'documentoTipo': 'Tipo de Documento',
+            'nacimientofecha': 'Fecha de Nacimiento',
+            'documentonumero': 'Número de Documento',
+            'documentotipo': 'Tipo de Documento',
             'genero': 'Género',
             'direccion': 'Dirección',
             'obraSocial': 'Obra Social',
             'afiliado': 'Identificación como Afiliado',
-            'telefono1': 'Línea Telefónica',
-            'telefono2': 'Línea Alternativa',
+            'telefonocelular': 'Teléfono celular',
+            'telefonofijo': 'Teléfono Fijo',
             'profesion': 'Profesión',
             'referente': 'Profesional Referente'
         }
 
     def __init__(self, *args, **kwargs):
         super(PacienteForm, self).__init__(*args, **kwargs)
-        self.fields['nacimientoFecha'].required = False
-        self.fields['documentoNumero'].required = False
-        self.fields['documentoTipo'].required = False
+        self.fields['nacimientofecha'].required = False
+        self.fields['documentonumero'].required = False
+        self.fields['documentotipo'].required = False
         self.fields['direccion'].required = False
         self.fields['localidad'].required = False
-        self.fields['obraSocial'].required = False
+        self.fields['obrasocial'].required = False
         self.fields['plan'].required = False
         self.fields['afiliado'].required = False
-        self.fields['telefono1'].required = False
-        self.fields['telefono2'].required = False
+        self.fields['telefonocelular'].required = False
+        self.fields['telefonofijo'].required = False
         self.fields['email'].required = False
         self.fields['profesion'].required = False
         self.fields['referente'].required = False

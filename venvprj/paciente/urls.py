@@ -4,11 +4,13 @@ from .views import (PacienteListView, PacienteDetailView)
 from django.conf.urls import url
 
 
-app_name='paciente'
+app_name = 'paciente'
 
 urlpatterns = [
-    path('', views.paciente_form),  # localhost:p/ptid OJO CUIDADO
-    #path('list', views.PacienteListView.as_view(), name='pacientes')
-    #url(r'^$', views.PacienteListView.as_view(), name='list'),
-    #url(r'^(?P<pk>\d+)$', PacienteDetailView.as_view(), name='detail')
+    path('', views.PacienteListView.as_view(), name='paciente_list'),
+    path('create/', views.paciente_form, name='paciente_create'),
+    path('<int:pk>/', views.PacienteDetailView.as_view(), name='paciente_detail'),
+
+#    path('<int:pk>/update/', v.expense_update, name='expense_update'),
+#    path('<int:pk>/delete/', v.expense_delete, name='expense_delete'),
 ]

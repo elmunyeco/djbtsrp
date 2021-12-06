@@ -21,7 +21,7 @@ from django.conf.urls import url, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('paciente/', include('paciente.urls'))
+    path('pacientes/', include('paciente.urls'))
 
     #url(r'^admin/', admin.site.urls),
     #url(r'^paciente/', include('paciente.urls', namespace='paciente'))
