@@ -1,0 +1,291 @@
+/*********************************************************/
+/* RESET */
+/*********************************************************/
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+ol,ul{list-style:none;margin:0;padding:0;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+
+/* start editing from here */
+a{text-decoration:none;}
+.txt-rt{text-align:right;}/* text align right */
+.txt-lt{text-align:left;}/* text align left */
+.center{text-align:center;}/* text align center */
+.float-rt{float:right;}/* float right */
+.float-lt{float:left;}/* float left */
+.clear{clear:both;}/* clear float */
+.pos-relative{position:relative;}/* Position Relative */
+.pos-absolute{position:absolute;}/* Position Absolute */
+.vertical-base{	vertical-align:baseline;}/* vertical align baseline */
+.vertical-top{	vertical-align:top;}/* vertical align top */
+.underline{	padding-bottom:5px;	border-bottom: 1px solid #eee; margin:0 0 20px 0;}/* Add 5px bottom padding and a underline */
+nav.vertical ul li{	display:block;}/* vertical menu */
+nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
+img{max-width:100%;}
+
+/* END RESET*/
+
+/*************************************************/
+/* LOGIN */
+/*************************************************/
+#container_demo{
+	 text-align: left;
+	 margin: 0;
+	 padding: 0;
+	 margin: 0 auto;
+}
+#wrapper{
+	width: 60%;
+	right: 0px;
+	min-height: 560px;	
+	margin: 0px auto;	
+	width: 500px;
+	position: relative;	
+}
+
+#wrapper h1{
+	font-size: 48px;
+	color: rgb(217, 16, 12);
+	padding: 2px 0 10px 0;
+	font-weight: bold;
+	text-align: center;
+	padding-bottom: 30px;
+}
+#wrapper label{
+	color: rgb(217, 16, 12);
+	position: relative;
+}
+#register, 
+#login{
+	position: absolute;
+	top: 30px;
+	width: 88%;	
+	padding: 18px 6% 60px 6%;
+	margin: 0 0 35px 0;
+	background: rgb(247, 247, 247);
+	border: 1px solid rgba(147, 184, 189,0.8);
+	-moz-border-radius: 5px;
+		 border-radius: 5px;
+}
+.error{
+	color: red;
+	text-align: center;
+	display: block;
+	padding-bottom: 20px;
+}
+.logo{
+	width: 220px;
+	height: 100px;
+	margin-top: 20px;
+	padding: 10px;
+	float: left;
+}
+.logo img{
+	width: 100%;
+	height: 100%;
+}
+.header_top_right{
+	float: right;
+    padding-top: 30px;
+    padding-right: 100px;
+    font-size: 18px;
+}
+.header{
+	-webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) ;
+	   -moz-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) ;
+	        box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) ;
+}
+.mainContainer{
+	width: 100%;
+	height: auto;;
+	padding-top: 20px;
+}
+.menu{
+    height: 500px;
+}
+.main{
+	padding-left: 20px;
+	float: left;
+}
+.footer{
+	clear: both;
+	background: #eee;
+	width: 100%;
+	height: 50px;
+	z-index: 9999;
+}
+#side-menu .menuSelected{
+	border-left: 5px solid #D9100C;
+	background: rgba(217, 16, 12,0.5) !important;
+	color: #FFF !important;
+}
+.boxTblHeader{
+
+}
+.cajaBuscador{
+	padding-left: 40px;
+	padding-top: 10px;
+	float: left;
+}
+.cajaBuscador .form-control{
+	width: 40% !important;
+}
+.cajaAdd{
+	float: right;
+	padding-right: 150px;
+	padding-top: 30px;
+}
+.cajaAdd i.glyphicon-plus-sign{
+	font-size: 24px;
+}
+.msjError, #ldgBuscar, .ldgSend{
+	display: none;
+}
+.msjBuscador{
+	display: none;
+	margin-top: 20px;
+}
+.boxFilter{
+	margin-left: 20px;
+	margin-top:10px;
+	display: none;
+}
+.boxFilter a, .boxFilter a:hover, .boxFilter a:visited{
+	color: #FFF;
+}
+.msjPaciente{
+	display: none;
+	text-align: center;
+}
+.msjIndicacion{
+	display: none;
+	text-align: center;
+}
+.msjSolicitud{
+	display: none;
+	text-align: center;
+}
+.panel-red{
+	border-color: #d9534f !important;
+}
+.panel-red .panel-heading{
+	background-color: #d9534f;
+    border-color: #d9534f;
+    color: #fff;
+}
+#comentario{
+	resize: vertical;
+	min-height: 80px;
+	max-height: 200px;
+}
+.tituloComentarios{
+	font-size: 20px;
+	display: block;
+}
+.boxloading{
+	display: none;
+	text-align: center;
+	margin: 20px auto;
+}
+.btnHClinica a, .btnHClinica a:hover{
+	color: #FFF;
+}
+.btnOpcs{
+	text-align:center;
+	display: none;
+}
+.btnSbtPaciente{
+	text-align:center; 
+	padding-top: 20px;
+}
+.btnSbtIndicacion{
+	text-align:center; 
+	padding-top: 20px;
+}
+#refHC{
+	margin-left: 20px;
+}
+.cajaCorreo{
+	display: none;
+	float: right;
+    margin-right: 50px;
+}
+.glyphicon-refresh-animate {
+    animation: spin .7s infinite linear;
+    -webkit-animation: spin .7s infinite linear;
+}
+#sendLoading, #panelLoading, #boxSubmit{
+	display: none;
+}
+#enfLoading{
+	display: block;	
+}
+ul.listSignosVitales li{
+	display: flex;
+}
+.eliminarComentario{
+	position: absolute; 
+	right: 0;
+	top:0;
+	display: none;
+}
+.btnEnfermedades{
+	-moz-user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+.btnEnfermedades, .btnEnfermedades:hover{
+	cursor: default;
+	background-color: #428bca;
+    border-color: #357ebd;
+    color: #fff;
+}
+.boxPaciente div{
+	padding: 0 !important;
+}
+.btnVolver{
+	text-align: center;
+	display:none;
+}
+.bottom{
+	position: absolute;
+	bottom: 0;
+}
+.boxFiltros{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+#nuevoEstudio{
+	float: right;
+    font-size: 20px;
+    position: relative;
+    right: 20px;
+    top: -20px;
+}
+#nuevoEstudio i{
+	font-size: 24px;
+}
+.form-control-feedback{
+	right: 40px ;
+	top: 0px ;
+	display: none;
+}
+.boxMail{
+	display:none;
+}
+.tipoEstudios{
+	list-style: inside none disc;
+}

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import PacienteForm
 from .models import Paciente
+from .mixins import SearchPacientesMixin
 
 from django.utils import timezone
 from django.views.generic.list import ListView
@@ -44,7 +45,7 @@ def paciente_del(request):
     return
 
 
-class PacienteListView(ListView):
+class PacienteListView(SearchPacientesMixin, ListView):
 
     model = Paciente
     paginate_by = 10

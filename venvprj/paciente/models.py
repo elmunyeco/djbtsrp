@@ -31,44 +31,46 @@ class Paciente(models.Model):
     obrasocial = models.CharField('Obra Social', max_length=128, null=True)
     plan = models.CharField('Plan', max_length=128, null=True)
     afiliado = models.CharField('Afiliado', max_length=128, null=True)
-    telefonocelular = models.CharField('Telefono Celular', max_length=12, null=True)
+    telefonocelular = models.CharField(
+        'Telefono Celular', max_length=12, null=True)
     telefonofijo = models.CharField('Telefono Fijo', max_length=12, null=True)
     email = models.EmailField('Mail', max_length=128, null=True)
     profesion = models.CharField('Profesion', max_length=128, null=True)
     referente = models.CharField('Medico Referente', max_length=128, null=True)
 
     def __str__(self):
-        return ("Paciente: %s %s" % self.nombre, self.apellido)
+        return f'{self.nombre} {self.apellido} {self.genero}'
 
     class Meta:
-        ordering = ['apellido', 'nombre']
+        ordering=['apellido', 'nombre']
 
 
 class HistoriaClinica(models.Model):
-    paciente = models.OneToOneField(
+    paciente=models.OneToOneField(
         Paciente,
-        on_delete=models.CASCADE,
-        primary_key=True,
+        on_delete = models.CASCADE,
+        primary_key = True,
     )
-    descripcion = models.TextField(null=True)
+    descripcion=models.TextField(null = True)
 
 
 class Diagnosticos(models.Model):
-    paciente = models.OneToOneField(
+    paciente=models.OneToOneField(
         Paciente,
-        on_delete=models.CASCADE,
-        primary_key=True,
+        on_delete = models.CASCADE,
+        primary_key = True,
     )
-    hipertensionarterial = models.BooleanField('Hipertension Arterial', default=False)
-    diabetes1 = models.BooleanField('Diabetes Tipo I', default=False)
-    diabetes2 = models.BooleanField('Diabetes Tipo 2', default=False)
+    hipertensionarterial=models.BooleanField(
+        'Hipertension Arterial', default = False)
+    diabetes1=models.BooleanField('Diabetes Tipo I', default = False)
+    diabetes2=models.BooleanField('Diabetes Tipo 2', default = False)
 
 def create_hc(sender, instance, signal, **kwargs):
-    HistoriaClinica.objects.create(paciente=instance, descripcion='Historia Clínica ({0}) de {1} {2}'.format(
+    HistoriaClinica.objects.create(paciente = instance, descripcion = 'Historia Clínica ({0}) de {1} {2}'.format(
         1, instance.nombre, instance.apellido))
 
 def create_diagnostico(sender, instance, signal, **kwargs):
-    Diagnosticos.objects.create(paciente=instance)
+    Diagnosticos.objects.create(paciente = instance)
 
-post_save.connect(create_hc, sender=Paciente)
-post_save.connect(create_diagnostico, sender=Paciente)
+post_save.connect(create_hc, sender = Paciente)
+post_save.connect(create_diagnostico, sender = Paciente)

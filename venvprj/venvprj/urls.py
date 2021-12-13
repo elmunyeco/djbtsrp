@@ -17,6 +17,7 @@ Including another URLconf
 from django.urls import path
 from django.contrib import admin
 from django.conf.urls import url, include
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
 urlpatterns = [
@@ -26,3 +27,6 @@ urlpatterns = [
     #url(r'^admin/', admin.site.urls),
     #url(r'^paciente/', include('paciente.urls', namespace='paciente'))
 ]
+
+
+urlpatterns += staticfiles_urlpatterns()
