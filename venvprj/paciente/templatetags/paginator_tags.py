@@ -10,3 +10,10 @@ def get_proper_elided_page_range(p, number, on_each_side=3, on_ends=2):
     return paginator.get_elided_page_range(number=number,
                                            on_each_side=on_each_side,
                                            on_ends=on_ends)
+
+@register.simple_tag
+def url_replace (request, field, value):
+    dict_ = request.GET.copy()
+    dict_[field] = value
+
+    return dict_.urlencode()

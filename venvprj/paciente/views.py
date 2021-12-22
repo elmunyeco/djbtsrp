@@ -2,10 +2,9 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import PacienteForm
 from .models import Paciente
-from .mixins import SearchPacientesMixin
-
-from django.utils import timezone
+from .mixins import SearchPacientesMixin, SearchPacientesJSONMixin
 from django.views.generic.list import ListView
+from django.views.generic import TemplateView
 from django.views.generic.detail import DetailView
 
 # Create your views here.
@@ -46,7 +45,6 @@ def paciente_del(request):
 
 
 class PacienteListView(SearchPacientesMixin, ListView):
-
     model = Paciente
     paginate_by = 10
 
@@ -54,12 +52,17 @@ class PacienteListView(SearchPacientesMixin, ListView):
 """ 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['now'] = timezone.now()
         return context
 
+        context['now'] = timezone.now()
  """
 
 
-class PacienteDetailView(DetailView):
+class PacienteJSONListView(SearchPacientesJSONMixin, ListView):
+    model = Paciente
+    paginate_by = 10
 
+
+
+class PacienteDetailView(DetailView):
     model = Paciente
