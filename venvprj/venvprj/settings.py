@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'ajax_datatable',
     'paciente',
 ]
 
@@ -136,3 +137,10 @@ STATICFILES_DIRS = (
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AJAX_DATATABLE_MAX_COLUMNS = 30
+AJAX_DATATABLE_TRACE_COLUMNDEFS = True
+AJAX_DATATABLE_TRACE_QUERYDICT = True
+AJAX_DATATABLE_TRACE_QUERYSET = True
+AJAX_DATATABLE_TEST_FILTERS = True
+AJAX_DATATABLE_DISABLE_QUERYSET_OPTIMIZATION = True

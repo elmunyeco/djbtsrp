@@ -7,26 +7,11 @@ from django.views.generic.list import ListView
 from django.views.generic import TemplateView
 from django.views.generic.detail import DetailView
 
-# Create your views here.
+from ajax_datatable.views import AjaxDatatableView
 
 
-""" def paciente_list(request):
-    pacientes_list = Paciente.objects.all()
-    page = request.GET.get('page', 1)
-    paginator = Paginator(pacientes_list, 10)
-    page_obj = paginator.get_page(page)
-    page_range = paginator.get_elided_page_range(number=page)
-
-    try:
-        pacientes = paginator.page(page)
-    except PageNotAnInteger:
-        pacientes = paginator.page(1)
-    except EmptyPage:
-        pacientes = paginator.page(paginator.num_pages, on_each_side=3)
-
-    context = {'paciente_list': pacientes}
-    return render(request, 'paciente/paciente_list.html', context)
- """
+def index(request):
+    return render(request, 'paciente/index.html', {})
 
 
 def paciente_form(request):
@@ -49,20 +34,24 @@ class PacienteListView(SearchPacientesMixin, ListView):
     paginate_by = 10
 
 
-""" 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-
-        context['now'] = timezone.now()
- """
-
-
 class PacienteJSONListView(SearchPacientesJSONMixin, ListView):
     model = Paciente
     paginate_by = 10
 
 
-
 class PacienteDetailView(DetailView):
     model = Paciente
+
+
+class PacienteDatatableListView(AjaxDatatableView):
+    model = Paciente
+    title = 'Pacientes'
+    initial_order = [["nombre", "asc"], ]
+    length_menu = [[10, 20, 50, 100, -1], [10, 20, 50, 100, 'all']]
+    search_values_separator = '+'
+
+    column_defs = [
+        AjaxDatatableView.render_row_tools_column_def(),
+        {'name': 'id', 'visible': False, },
+        {'name': 'nombre', 'visible': True, },
+    ]
