@@ -49,9 +49,13 @@ class PacienteDatatableListView(AjaxDatatableView):
     initial_order = [["nombre", "asc"], ]
     length_menu = [[10, 20, 50, 100, -1], [10, 20, 50, 100, 'all']]
     search_values_separator = '+'
+    show_column_filters = False
 
     column_defs = [
-        AjaxDatatableView.render_row_tools_column_def(),
-        {'name': 'id', 'visible': False, },
-        {'name': 'nombre', 'visible': True, },
+
+        {'name': 'id', 'visible': False, 'searchable': True},
+        {'name': 'nombre', 'visible': True},
+        {'name': 'apellido', 'visible': True},
+        {'name': 'documentonumero', 'visible': True},
+
     ]

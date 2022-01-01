@@ -1,0 +1,81 @@
+{% load i18n static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel='stylesheet' href="{% static 'all/bootstrap.min.css' %}">
+    <link rel='stylesheet' href="{% static 'all/font-awesome.min.css' %}">
+
+    <link rel='stylesheet' href="{% static 'all/dataTables.bootstrap4.min.css' %}">
+    <link rel='stylesheet' href="{% static 'all/buttons.bootstrap4.min.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'all/frontend.css' %}">
+
+    <link href="{% static 'all/style.css' %}" rel="stylesheet" />
+
+    {% block extrastyle %}
+    {% endblock extrastyle %}
+</head>
+
+<body class="page-{% block body-class%}{% endblock body-class%}">
+
+    <!--a href="https://github.com/morlandi/django-ajax-datatable" style="float: right">
+        <img loading="lazy" width="149" height="149"
+        src="{% static 'all/forkme_right_darkblue_121621.png' %}"
+        class="attachment-full size-full"
+        alt="Fork me on GitHub"
+        data-recalc-dims="1">
+    </a-->
+
+    <main role="main" class="container">
+
+        <div id="page-title"><h2>{% block page-title %}{% endblock page-title %}</h2></div>
+
+        {% block messages %}
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{message.tag}}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        {% endblock messages %}
+
+        <div id="content">
+        {% block content %}
+            <h1>Content goes here</h1>
+        {% endblock content %}
+        </div>
+
+    </main>
+
+    <script src="{% static 'all/jquery.min.js' %}"></script>
+    <script src="{% static 'all/popper.min.js' %}"></script>
+    <script src="{% static 'all/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'all/utils.js' %}"></script>
+
+    <script src="{% static 'all/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'all/dataTables.bootstrap4.min.js' %}"></script>
+
+    <script src="{% static 'all/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'all/buttons.print.min.js' %}"></script>
+    <script src="{% static 'all/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'all/buttons.bootstrap4.min.js' %}"></script>
+
+    <script src="{% static 'all/jszip.min.js' %}"></script>
+    <script src="{% static 'all/pdfmake.min.js' %}"></script>
+    <script src="{% static 'all/vfs_fonts.js' %}"></script>
+
+    <script>
+
+    </script>
+
+    {% block extrajs %}
+    {% endblock extrajs %}
+
+</body>
+
+</html>

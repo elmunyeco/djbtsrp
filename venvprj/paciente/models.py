@@ -23,7 +23,7 @@ class Paciente(models.Model):
     documentotipo = models.CharField(
         'Tipo de Documento', max_length=3, choices=DOCUMENTO_TIPO, default='DNI', null=True)
     documentonumero = models.CharField(
-        'Numero de Documento', max_length=20, null=True)
+        'Nro Documento', max_length=20, null=True)
     genero = models.CharField(
         'Genero', max_length=2, choices=GENERO, default='M')
     direccion = models.CharField('Direccion', max_length=256, null=True)
