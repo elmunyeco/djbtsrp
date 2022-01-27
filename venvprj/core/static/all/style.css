@@ -40,7 +40,7 @@ div.card-body {
 
 
 .dataTables_wrapper td.dataTables_row-tools {
-    /*cursor: pointer;*/
+    cursor: pointer;
 }
 
 .dataTables_wrapper td.dataTables_row-tools div {

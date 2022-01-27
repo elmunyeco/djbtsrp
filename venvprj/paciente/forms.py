@@ -1,5 +1,7 @@
 from django import forms
 from .models import Paciente
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Row, Div,    Field
 
 
 class PacienteForm(forms.ModelForm):
@@ -24,6 +26,14 @@ class PacienteForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(PacienteForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.layout = Layout(
+            Div(
+                Field('div_id_nombre', css_class='col-md-3'),
+                Field('apellido', css_class='col-md-9'),
+                css_class='form-row'),
+        )
+
         self.fields['nacimientofecha'].required = False
         self.fields['documentonumero'].required = False
         self.fields['documentotipo'].required = False

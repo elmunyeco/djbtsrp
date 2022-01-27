@@ -407,12 +407,18 @@ window.AjaxDatatableViewUtils = (function() {
                 //     "search":		 '<a href="#" class="search-icon"> <i class="fa fa-search" aria-hidden="true"></i> </a>',
 			"search":		 '',
                 //     "zeroRecords":    "Nessun record trovato",
-                     "paginate": {
-                         "first":      "Primera",
-                         "last":       "Ultima",
-                         "next":       "Proxima",
-                         "previous":   "Anterior"
-                     },
+		     "paginate": {
+			     "next":	   '<i class="fa fa-arrow-right"></i>',
+                             "previous":   '<i class="fa fa-arrow-left"></i>',
+			     "first":	   '<i class="fa fa-forward"></i>',
+			     "last":	   '<i class="fa fa-backward"></i>',
+		     },
+                     //"paginate": {
+                     //    "first":      "Primera",
+                     //    "last":       "Ultima",
+                     //    "next":       "Proxima",
+                     //    "previous":   "Anterior"
+                     //},
                 //     "aria": {
                 //         "sortAscending":  ": activate to sort column ascending",
                 //         "sortDescending": ": activate to sort column descending"

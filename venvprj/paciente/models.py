@@ -42,7 +42,7 @@ class Paciente(models.Model):
         return f'{self.nombre} {self.apellido} {self.genero}'
 
     class Meta:
-        ordering=['apellido', 'nombre']
+        ordering=['id']
 
 
 class HistoriaClinica(models.Model):
