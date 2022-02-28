@@ -1,37 +1,52 @@
 from django import forms
 from .models import Paciente
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Row, Div,    Field
+from crispy_forms.layout import Layout, Div, Field, Submit
 
 
 class PacienteForm(forms.ModelForm):
 
-    class Meta:
-        model = Paciente
-        # fields = ("",)
-        fields = '__all__'
-        labels = {
-            'nacimientofecha': 'Fecha de Nacimiento',
-            'documentonumero': 'Número de Documento',
-            'documentotipo': 'Tipo de Documento',
-            'genero': 'Género',
-            'direccion': 'Dirección',
-            'obraSocial': 'Obra Social',
-            'afiliado': 'Identificación como Afiliado',
-            'telefonocelular': 'Teléfono celular',
-            'telefonofijo': 'Teléfono Fijo',
-            'profesion': 'Profesión',
-            'referente': 'Profesional Referente'
-        }
-
     def __init__(self, *args, **kwargs):
         super(PacienteForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper(self)
+        self.helper = FormHelper()
         self.helper.layout = Layout(
             Div(
-                Field('div_id_nombre', css_class='col-md-3'),
-                Field('apellido', css_class='col-md-9'),
-                css_class='form-row'),
+                Field('documentotipo', wrapper_class='col-md-3'),
+                Field('documentonumero', wrapper_class='col-md-6'),
+                Field('genero', wrapper_class='col-md-3'),
+                css_class='row'
+            ),
+            Div(
+                Field('nombre', wrapper_class='col-md-5'),
+                Field('apellido', wrapper_class='col-md-5'),
+                Field('nacimientofecha', wrapper_class='col-md-2'),
+                css_class='row'
+            ),
+            Div(
+                Field('direccion', wrapper_class='col-md-5'),
+                Field('localidad', wrapper_class='col-md-5'),
+                css_class='row'
+            ),
+            Div(
+                Field('telefonofijo', wrapper_class='col-md-5'),
+                Field('telefonocelular', wrapper_class='col-md-5'),
+                css_class='row'
+            ),
+            Div(
+                Field('obrasocial', wrapper_class='col-md-4'),
+                Field('plan', wrapper_class='col-md-4'),
+                Field('afiliado', wrapper_class='col-md-4'),
+                css_class='row'
+            ),
+            Div(
+                Field('profesion', wrapper_class='col-md-4'),
+                Field('referente', wrapper_class='col-md-4'),
+                css_class='row'
+            ),
+            Div(
+                Submit('submit', 'Submit'),
+                css_class='row d-flex justify-content-center'
+            ),
         )
 
         self.fields['nacimientofecha'].required = False
@@ -47,3 +62,26 @@ class PacienteForm(forms.ModelForm):
         self.fields['email'].required = False
         self.fields['profesion'].required = False
         self.fields['referente'].required = False
+
+    class Meta:
+        model = Paciente
+        fields = '__all__'
+        """ fields = ('nombre', 'apellido') """
+        labels = {
+            'nacimientofecha': 'F. Nac',
+            'documentonumero': 'Número de Documento',
+            'documentotipo': 'Tipo de Documento',
+            'genero': 'Género',
+            'direccion': 'Dirección',
+            'obraSocial': 'Obra Social',
+            'afiliado': 'Afiliado',
+            'telefonocelular': 'Teléfono celular',
+            'telefonofijo': 'Teléfono Fijo',
+            'profesion': 'Profesión',
+            'referente': 'Profesional Referente'
+        }
+        widgets = {
+            'genero': forms.RadioSelect(choices=[('Masculino', 'Masculino'), ('Femenino', 'Femenino'), ('Trolo','Trolo')])
+            
+            #(widget=forms.RadioSelect,choices=[('Masculino', 'Masculino'), ('Femenino', 'Femenino'), ('Trolo','Trolo')] )
+        }

@@ -16,12 +16,12 @@ def index(request):
 
 def paciente_form(request):
     if request.method == "GET":
-        form = PacienteForm()
-        return render(request, 'paciente/paciente_form.html', {'form': form})
+        p_form = PacienteForm()
+        return render(request, 'paciente/paciente_form.html', {'p_form': p_form})
     else:
-        form = PacienteForm(request.POST)
-        if form.is_valid():
-            form.save()
+        p_form = PacienteForm(request.POST)
+        if p_form.is_valid():
+            p_form.save()
             return redirect("/paciente/list")
 
 
