@@ -16,13 +16,15 @@ def index(request):
 
 def paciente_form(request):
     if request.method == "GET":
+        print("EN EL GET")
         p_form = PacienteForm()
         return render(request, 'paciente/paciente_form.html', {'p_form': p_form})
     else:
         p_form = PacienteForm(request.POST)
+        print("EN EL POST")
         if p_form.is_valid():
             p_form.save()
-            return redirect("/paciente/list")
+            return redirect("/pacientes/")
 
 
 def paciente_del(request):

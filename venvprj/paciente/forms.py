@@ -10,41 +10,47 @@ class PacienteForm(forms.ModelForm):
         super(PacienteForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
+
             Div(
-                Field('documentotipo', wrapper_class='col-md-3'),
-                Field('documentonumero', wrapper_class='col-md-6'),
-                Field('genero', wrapper_class='col-md-3'),
-                css_class='row'
+                Field('documentotipo', wrapper_class='col-md-5'),
+                Field('documentonumero', wrapper_class='col-md-5'),
+                css_class='row d-flex justify-content-center'
             ),
             Div(
-                Field('nombre', wrapper_class='col-md-5'),
-                Field('apellido', wrapper_class='col-md-5'),
-                Field('nacimientofecha', wrapper_class='col-md-2'),
-                css_class='row'
+                Field('nombre', wrapper_class='col-md-6'),
+                Field('apellido', wrapper_class='col-md-6'),
+                css_class='row d-flex justify-content-center'
+            ),
+            Div(
+                Field('nacimientofecha', wrapper_class='col-md-4'),
+                Field('genero', wrapper_class='col-md-4'),
+                css_class='row d-flex justify-content-center'
             ),
             Div(
                 Field('direccion', wrapper_class='col-md-5'),
                 Field('localidad', wrapper_class='col-md-5'),
-                css_class='row'
+                css_class='row d-flex justify-content-center'
             ),
             Div(
-                Field('telefonofijo', wrapper_class='col-md-5'),
-                Field('telefonocelular', wrapper_class='col-md-5'),
-                css_class='row'
+                
+                Field('telefonofijo', wrapper_class='col-md-3'),
+                Field('telefonocelular', wrapper_class='col-md-3'),
+                Field('email', wrapper_class='col-md-6'),
+                css_class='row d-flex justify-content-center'
             ),
             Div(
-                Field('obrasocial', wrapper_class='col-md-4'),
-                Field('plan', wrapper_class='col-md-4'),
-                Field('afiliado', wrapper_class='col-md-4'),
-                css_class='row'
+                Field('obrasocial', wrapper_class='col-md-3'),
+                Field('plan', wrapper_class='col-md-3'),
+                Field('afiliado', wrapper_class='col-md-6'),
+                css_class='row d-flex justify-content-center'
             ),
             Div(
-                Field('profesion', wrapper_class='col-md-4'),
-                Field('referente', wrapper_class='col-md-4'),
-                css_class='row'
+                Field('profesion', wrapper_class='col-md-5'),
+                Field('referente', wrapper_class='col-md-5'),
+                css_class='row d-flex justify-content-center'
             ),
             Div(
-                Submit('submit', 'Submit'),
+                Submit('submit', 'Guardar'),
                 css_class='row d-flex justify-content-center'
             ),
         )
@@ -81,7 +87,6 @@ class PacienteForm(forms.ModelForm):
             'referente': 'Profesional Referente'
         }
         widgets = {
-            'genero': forms.RadioSelect(choices=[('Masculino', 'Masculino'), ('Femenino', 'Femenino'), ('Trolo','Trolo')])
-            
-            #(widget=forms.RadioSelect,choices=[('Masculino', 'Masculino'), ('Femenino', 'Femenino'), ('Trolo','Trolo')] )
+            'genero': forms.RadioSelect(),
+            'nacimientofecha': forms.DateInput(attrs={'type': 'date'}, format='%Y-%m-%d')
         }

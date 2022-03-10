@@ -1,5 +1,5 @@
 from django.urls import path, include
-from . import views
+from .  import views
 from .views import (PacienteListView, PacienteJSONListView,
                     PacienteDatatableListView, PacienteDetailView)
 from django.conf.urls import url
@@ -13,6 +13,7 @@ urlpatterns = [
          name="ajax_paciente_list"),
     #    path('', views.PacienteListView.as_view(), name='paciente_list'),
     #    path('j/', views.PacienteJSONListView.as_view(), name='paciente_list_j'),
-    path('create/', views.paciente_form, name='paciente_create'),
+    path('create/', views.paciente_form, name='culoroto'),
+    path('create/POST', views.paciente_form, name='postroto'),
     path('<int:pk>/', views.PacienteDetailView.as_view(), name='paciente_detail'),
 ]
