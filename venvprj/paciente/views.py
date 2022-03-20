@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import PacienteForm
@@ -9,6 +10,8 @@ from django.views.generic.detail import DetailView
 
 from ajax_datatable.views import AjaxDatatableView
 
+from django.http import Http404
+
 
 def index(request):
     return render(request, 'paciente/index.html', {})
@@ -16,7 +19,7 @@ def index(request):
 
 def paciente_form(request):
     if request.method == "GET":
-        print("EN EL GET")
+        print("PACIENTE CREATE FORM: EN EL GET")
         p_form = PacienteForm()
         return render(request, 'paciente/paciente_form.html', {'p_form': p_form})
     else:
@@ -27,8 +30,23 @@ def paciente_form(request):
             return redirect("/pacientes/")
 
 
+def paciente_update(request, id):
+    try:
+        print("PACIENTE UPDATE FORM: EN EL GET")
+        p_form = PacienteForm()
+        print(id)
+        paciente = Paciente.objects.get(id=id)
+        p_form = PacienteForm(instance=paciente)
+        return render(request, 'paciente/paciente_form.html', {'p_form': p_form})
+    except Paciente.DoesNotExist:
+        return render(request, 'paciente/404.html', status=404)
+
 def paciente_del(request):
     return
+
+
+def page_not_found(request, exception):
+    return render(request, '404.html', status=404)
 
 
 class PacienteListView(SearchPacientesMixin, ListView):

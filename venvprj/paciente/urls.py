@@ -7,13 +7,24 @@ from django.conf.urls import url
 
 app_name = 'paciente'
 
+""" urlpatterns = [
+    path('', views.index),
+    path('lista/', views.PacienteDatatableListView.as_view(),
+         name="ajax_paciente_list"),
+    #    path('', views.PacienteListView.as_view(), name='paciente_list'),
+    #    path('j/', views.PacienteJSONListView.as_view(), name='paciente_list_j'),
+    path('create/', views.paciente_form, name='create_paciente_form'),
+    path('create/POST', views.paciente_form, name='create_paciente_form'),
+    path('update/<int:pk>/', views.paciente_form, name='update_paciente_form'),
+] """
+
+
 urlpatterns = [
     path('', views.index),
     path('lista/', views.PacienteDatatableListView.as_view(),
          name="ajax_paciente_list"),
     #    path('', views.PacienteListView.as_view(), name='paciente_list'),
     #    path('j/', views.PacienteJSONListView.as_view(), name='paciente_list_j'),
-    path('create/', views.paciente_form, name='culoroto'),
-    path('create/POST', views.paciente_form, name='postroto'),
-    path('<int:pk>/', views.PacienteDetailView.as_view(), name='paciente_detail'),
+    url(r'^create/', views.paciente_form, name='create_paciente_form'),
+    path('update/<int:id>/', views.paciente_update, name='update_paciente_form'),
 ]
