@@ -31,15 +31,23 @@ def paciente_form(request):
 
 
 def paciente_update(request, id):
-    try:
-        print("PACIENTE UPDATE FORM: EN EL GET")
-        p_form = PacienteForm()
-        print(id)
-        paciente = Paciente.objects.get(id=id)
-        p_form = PacienteForm(instance=paciente)
-        return render(request, 'paciente/paciente_form.html', {'p_form': p_form})
-    except Paciente.DoesNotExist:
-        return render(request, 'paciente/404.html', status=404)
+    print("ID DEL PACIENTE")
+    print(id)
+    paciente = Paciente.objects.get(id=id)
+    if request.method == "GET":
+        try:
+            p_form = PacienteForm(instance=paciente)
+            print("PACIENTE UPDATE FORM: EN EL GET")
+            return render(request, 'paciente/paciente_form.html', {'p_form': p_form})
+        except Paciente.DoesNotExist:
+            return render(request, 'paciente/404.html', status=404)
+    else:
+        print("EN EL POST")
+        p_form = PacienteForm(request.POST, instance=paciente)
+        if p_form.is_valid():
+            p_form.save()
+            return redirect("/pacientes/")
+
 
 def paciente_del(request):
     return
