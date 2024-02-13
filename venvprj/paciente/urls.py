@@ -25,7 +25,7 @@ urlpatterns = [
          name="ajax_paciente_list"),
     #    path('', views.PacienteListView.as_view(), name='paciente_list'),
     #    path('j/', views.PacienteJSONListView.as_view(), name='paciente_list_j'),
-    url(r'^create/', views.paciente_form, name='create_paciente_form'),
+    url(r'^create/', views.paciente_create, name='create_paciente_form'),
     url(r'^update/(?P<id>\d+)/$', views.paciente_update, name='update_paciente_form'),
 ]
 

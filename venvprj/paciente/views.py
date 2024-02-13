@@ -17,7 +17,7 @@ def index(request):
     return render(request, 'paciente/index.html', {})
 
 
-def paciente_form(request):
+def paciente_create(request):
     if request.method == "GET":
         print("PACIENTE CREATE FORM: EN EL GET")
         p_form = PacienteForm()
@@ -25,6 +25,7 @@ def paciente_form(request):
     else:
         p_form = PacienteForm(request.POST)
         print("EN EL POST")
+        print(request.POST)
         if p_form.is_valid():
             p_form.save()
             return redirect("/pacientes/")

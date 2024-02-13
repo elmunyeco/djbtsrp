@@ -30,6 +30,7 @@ class PacienteForm(forms.ModelForm):
                 Field('direccion', wrapper_class='col-md-5'),
                 Field('localidad', wrapper_class='col-md-5'),
                 css_class='row d-flex justify-content-center'
+                
             ),
             Div(
                 
@@ -37,7 +38,7 @@ class PacienteForm(forms.ModelForm):
                 Field('telefonocelular', wrapper_class='col-md-3'),
                 Field('email', wrapper_class='col-md-6'),
                 css_class='row d-flex justify-content-center'
-            ),
+            ), 
             Div(
                 Field('obrasocial', wrapper_class='col-md-3'),
                 Field('plan', wrapper_class='col-md-3'),
